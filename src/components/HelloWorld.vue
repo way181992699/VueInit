@@ -80,15 +80,35 @@
         </a>
       </li>
     </ul>
+    <ul>
+      <li>
+        <a
+          target="_blank"
+          @click="hello"
+        >
+          axios try
+        </a>
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
 export default {
   name: 'HelloWorld',
-  data () {
+  data() {
     return {
       msg: 'Welcome to Your Vue.js App'
+    }
+  },
+  methods: {
+    hello() {
+      this.axios.get("/hello").then(res => {
+        console.log(res)
+        if (res != null) {
+          this.msg = res
+        }
+      })
     }
   }
 }
@@ -99,14 +119,17 @@ export default {
 h1, h2 {
   font-weight: normal;
 }
+
 ul {
   list-style-type: none;
   padding: 0;
 }
+
 li {
   display: inline-block;
   margin: 0 10px;
 }
+
 a {
   color: #42b983;
 }
